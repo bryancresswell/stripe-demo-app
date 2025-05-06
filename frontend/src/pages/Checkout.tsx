@@ -142,7 +142,6 @@ const validateShippingInfo = () => {
                   </div>
                 ))}
               </div>
-              {/* Cost Breakdown */}
               <div className="space-y-2 mb-4">
                 <div className="flex justify-between">
                   <span>Subtotal</span>
@@ -157,7 +156,6 @@ const validateShippingInfo = () => {
                   <span>${(getTotalPrice() * 0.08).toFixed(2)}</span>
                 </div>
               </div>
-              {/* Total */}
               <div className="border-t border-gray-300 pt-3 mb-4">
                 <div className="flex justify-between font-bold">
                   <span>Total</span>

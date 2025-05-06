@@ -31,7 +31,6 @@ export const Cart = () => {
         Your Cart ({items.length} {items.length === 1 ? 'item' : 'items'})
       </p>
       <div className="flex flex-col lg:flex-row lg:space-x-8">
-        {/* Cart Items */}
         <div className="flex-1">
           <div className="border-t border-gray-200">
             {items.map((item) => (
@@ -52,7 +51,6 @@ export const Cart = () => {
             </button>
           </div>
         </div>
-        {/* Cart Summary */}
         <div className="lg:w-80 mt-8 lg:mt-0 text-black">
           <div className="border border-gray-300 rounded-md p-4">
             <h2 className="font-bold mb-4">Order Summary</h2>

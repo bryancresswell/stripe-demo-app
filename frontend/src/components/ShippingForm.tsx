@@ -68,7 +68,6 @@ export const ShippingForm = ({
     const requiresState = COUNTRIES_WITH_STATES.includes(selectedCountry)
 
     const autofillShippingData = () => {
-    // Autofill shipping data with some example/test values
         setSelectedCountry("SG");
         setSelectedCurrency("SGD");
         setShippingInfo({

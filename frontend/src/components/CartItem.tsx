@@ -35,11 +35,9 @@ export const CartItem = ({ item }: { item: CartItemType }) => {
           <PlusIcon className="h-4 w-4" />
         </button>
       </div>
-      {/* Item Total */}
       <div className="w-24 text-center text-black font-medium mx-4">
         ${(Number(product.price) * quantity).toFixed(2)}
       </div>
-      {/* Remove Button */}
       <button
         onClick={() => removeFromCart(product.id)}
         className="p-1 hover:bg-gray-100 rounded"
