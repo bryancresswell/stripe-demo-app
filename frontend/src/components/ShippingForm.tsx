@@ -171,7 +171,6 @@ export const ShippingForm = ({
                                         setSelectedCountry(e.target.value);
                                         const selectedOption = e.target.options[e.target.selectedIndex];
                                         const currency = selectedOption.getAttribute('data-attr-currency') || '';
-                                        console.log(currency)
                                         setSelectedCurrency(currency);
                                     }}
                                     disabled={currentStep === 'payment'}
