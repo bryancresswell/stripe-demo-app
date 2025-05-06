@@ -20,7 +20,7 @@ export const Checkout = () => {
   const [currentStep, setCurrentStep] = useState<'shipping' | 'payment'>(
     'shipping',
   )
-
+  const [selectedCurrency, setSelectedCurrency] = useState('')
   const [selectedCountry, setSelectedCountry] = useState('')
   const COUNTRIES_WITH_STATES = ['US', 'CA', 'AU', 'IN']
 
@@ -64,7 +64,7 @@ const validateShippingInfo = () => {
         // here is where i call backend
         axios.post('http://localhost:3000/api/payments', {
             "amount": getTotalPrice(),
-            "currency": "SGD",
+            "currency": selectedCurrency,
             shippingInfo,
             items,
             "order_id": 1
@@ -103,6 +103,8 @@ const validateShippingInfo = () => {
             setShippingInfo={setShippingInfo}
             selectedCountry={selectedCountry}
             setSelectedCountry={setSelectedCountry}
+            selectedCurrency={selectedCurrency}
+            setSelectedCurrency={setSelectedCurrency}
         />
         { clientSecret && (
         <Elements options={{clientSecret, appearance, loader}} stripe={stripePromise}>

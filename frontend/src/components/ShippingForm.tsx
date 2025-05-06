@@ -7,8 +7,11 @@ export const ShippingForm = ({
     shippingInfo,
     setShippingInfo,
     selectedCountry,
-    setSelectedCountry
+    setSelectedCountry,
+    selectedCurrency,
+    setSelectedCurrency
 }: {
+    selectedCurrency: string;
     currentStep: 'shipping' | 'payment';
     shippingInfo: {
         firstName: string;
@@ -34,61 +37,40 @@ export const ShippingForm = ({
     }>>;
     selectedCountry: string;
     setSelectedCountry: React.Dispatch<React.SetStateAction<string>>;
+    setSelectedCurrency: React.Dispatch<React.SetStateAction<string>>;
 }) => {
 
     const countries = [
         {
             value: 'SG',
-            label: 'Singapore'
+            label: 'Singapore',
+            currency: 'SGD'
         },
         {
             value: 'US',
-            label: 'United States'
-        },
-        {
-            value: 'GB',
-            label: 'United Kingdom'
+            label: 'United States',
+            currency: 'USD'
         },
         {
             value: 'CA',
-            label: 'Canada'
+            label: 'Canada',
+            currency: 'CAD'
         },
         {
             value: 'AU',
-            label: 'Australia'
-        },
-        {
-            value: 'DE',
-            label: 'Germany'
-        },
-        {
-            value: 'FR',
-            label: 'France'
-        },
-        {
-            value: 'ES',
-            label: 'Spain'
-        },
-        {
-            value: 'IT',
-            label: 'Italy'
-        },
-        {
-            value: 'JP',
-            label: 'Japan'
-        },
-        {
-            value: 'IN',
-            label: 'India'
+            label: 'Australia',
+            currency: 'AUD'
         }
     ]
 
-    const COUNTRIES_WITH_STATES = ['US', 'CA', 'AU', 'IN']
+    const COUNTRIES_WITH_STATES = ['US', 'CA', 'AU']
 
     const requiresState = COUNTRIES_WITH_STATES.includes(selectedCountry)
 
     const autofillShippingData = () => {
     // Autofill shipping data with some example/test values
+        setSelectedCountry("SG");
+        setSelectedCurrency("SGD");
         setShippingInfo({
             firstName: "John",
             lastName: "Doe",
@@ -187,6 +169,10 @@ export const ShippingForm = ({
                                             state: ''
                                         });
                                         setSelectedCountry(e.target.value);
+                                        const selectedOption = e.target.options[e.target.selectedIndex];
+                                        const currency = selectedOption.getAttribute('data-attr-currency') || '';
+                                        console.log(currency)
+                                        setSelectedCurrency(currency);
                                     }}
                                     disabled={currentStep === 'payment'}
                                     className="w-full border border-gray-300 rounded-md p-2"
@@ -194,8 +180,8 @@ export const ShippingForm = ({
                                     <option value="" disabled>
                                         Select a country
                                     </option>
-                                    {countries.map((country: { value: string; label: string }) => (
-                                        <option key={country.value} value={country.value}>
+                                    {countries.map((country: { value: string; label: string; currency: string }) => (
+                                        <option key={country.value} value={country.value} data-attr-currency={country.currency}>
                                             {country.label}
                                         </option>
                                     ))}
@@ -219,7 +205,7 @@ export const ShippingForm = ({
                             />
                         </div>
                         <div className="grid grid-cols-2 gap-4">
-                            <div>
+                            <div hidden={!requiresState}>
                                 <label className="block text-sm font-medium mb-1">
                                     State
                                 </label>
@@ -227,7 +213,14 @@ export const ShippingForm = ({
                                     type="text"
                                     required={requiresState}
                                     disabled={currentStep === 'payment' || !requiresState}
-                                    className={`w-full border border-gray-300 rounded-md p-2 ${requiresState ? '' : 'opacity-50'}`}
+                                    className={
+                                        `w-full border border-gray-300 rounded-md p-2 ${requiresState ? '' : 'opacity-50'} ` +
+                                        (
+                                            requiresState && !shippingInfo.state && currentStep !== 'payment'
+                                                ? 'border-red-500 ring-2 ring-red-400'
+                                                : ''
+                                        )
+                                    }
                                     value={shippingInfo.state}
                                     onChange={(e) =>
                                         setShippingInfo({

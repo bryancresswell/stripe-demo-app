@@ -176,12 +176,12 @@ export const OrderConfirmation = () => {
               </Link>
             </div>
           </>
-        ) : paymentStatus === 'requires_payment_method' ? (
+        ) : paymentStatus === 'requires_payment_method' || paymentStatus === 'failed' ? (
           <>
             <div className="flex justify-center mb-4">
               <XCircleIcon className="h-16 w-16 text-gray-700" />
             </div>
-            <h1 className="text-2xl font-bold mb-2">Payment Method Needed</h1>
+            <h1 className="text-2xl font-bold mb-2">Declined</h1>
             <p className="text-gray-600 mb-6">
               Your payment could not be completed. Please try again with a different payment method.
             </p>

@@ -43,14 +43,14 @@ def payments():
     if request.method == 'POST':
         data = request.get_json()
         amount = data.get('amount')
-        currency = data.get('currency')
+        currency = data.get('currency', '').lower()
         shippingInfo = data.get('shippingInfo')
         items = data.get('items')
         # Fix shippingInfo blob
         shippingData = {
             "address": {
                 "city": shippingInfo['city'],
-                "country": "SG",
+                "country": shippingInfo['country'],
                 "line1": shippingInfo['address'],
                 "postal_code": shippingInfo['zipCode'],
                 "state": shippingInfo['state']
@@ -60,7 +60,7 @@ def payments():
         } 
         try:
             payment_intent = stripe.PaymentIntent.create(
-                amount=int(float(amount) * 100),  # Stripe expects amount in cents
+                amount=int(float(amount) * 100),
                 currency=currency,
                 shipping=shippingData
             )
