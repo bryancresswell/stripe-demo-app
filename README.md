@@ -1,6 +1,5 @@
 # Stripe SA take-home assignment
-Assignment date: 30 April 2025
-Due date: 9 April 2025
+Assignment issued: 30 April 2025
 
 ## Key requirements
 
