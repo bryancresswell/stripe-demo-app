@@ -1,0 +1,35 @@
+DELETE FROM products;
+
+INSERT INTO products (
+    type, 
+    sub_type, 
+    name, 
+    description, 
+    url, 
+    image_url, 
+    average_rating,
+    num_reviews,
+    metadata, 
+    available_stock, 
+    status,
+    price
+) VALUES
+('book', 'fiction', 'The Midnight Library', 'Between life and death there is a library, and within that library, the shelves go on forever.', '/books/the-midnight-library', '/images/the-midnight-library.jpg', 4.2, 312, '{"author": "Matt Haig", "isbn": "9780525559474", "pages": 304, "publisher": "Viking", "year": 2020}', 15, 'ACTIVE', 16.99),
+('book', 'fiction', 'Where the Crawdads Sing', 'A murder mystery and coming-of-age story set in the marshes of North Carolina.', '/books/where-the-crawdads-sing', '/images/where-the-crawdads-sing.jpg', 4.7, 388, '{"author": "Delia Owens", "isbn": "9780735219090", "pages": 384, "publisher": "G.P. Putnam''s Sons", "year": 2018}', 20, 'ACTIVE', 18.99),
+('book', 'fiction', 'The Silent Patient', 'A psychological thriller about a woman who shoots her husband and then stops speaking.', '/books/the-silent-patient', '/images/the-silent-patient.jpg', 3.9, 241, '{"author": "Alex Michaelides", "isbn": "9781250301697", "pages": 336, "publisher": "Celadon Books", "year": 2019}', 12, 'ACTIVE', 17.99),
+('book', 'mystery', 'Gone Girl', 'A woman disappears on her fifth wedding anniversary, and her husband becomes the prime suspect.', '/books/gone-girl', '/images/gone-girl.jpg', 4.5, 367, '{"author": "Gillian Flynn", "isbn": "9780307588364", "pages": 432, "publisher": "Crown", "year": 2012}', 18, 'ACTIVE', 15.99),
+('book', 'mystery', 'The Girl with the Dragon Tattoo', 'A journalist and a computer hacker investigate a 40-year-old disappearance.', '/books/the-girl-with-the-dragon-tattoo', '/images/the-girl-with-the-dragon-tattoo.jpg', 4.1, 289, '{"author": "Stieg Larsson", "isbn": "9780307269751", "pages": 465, "publisher": "Knopf", "year": 2008}', 14, 'ACTIVE', 14.99),
+('book', 'science_fiction', 'Project Hail Mary', 'An astronaut wakes up alone on a spaceship with no memory of who he is or how he got there.', '/books/project-hail-mary', '/images/project-hail-mary.jpg', 4.8, 399, '{"author": "Andy Weir", "isbn": "9780593135204", "pages": 496, "publisher": "Ballantine Books", "year": 2021}', 16, 'ACTIVE', 19.99),
+('book', 'science_fiction', 'Dune', 'A noble family becomes embroiled in a war for control of the galaxy''s most valuable asset.', '/books/dune', '/images/dune.jpg', 4.3, 354, '{"author": "Frank Herbert", "isbn": "9780441172719", "pages": 896, "publisher": "Ace", "year": 1965}', 22, 'ACTIVE', 17.99),
+('book', 'fantasy', 'The Name of the Wind', 'The story of Kvothe, an adventurer and musician who grows to be the most notorious wizard his world has ever seen.', '/books/the-name-of-the-wind', '/images/the-name-of-the-wind.jpg', 4.6, 377, '{"author": "Patrick Rothfuss", "isbn": "9780756404741", "pages": 662, "publisher": "DAW", "year": 2007}', 19, 'ACTIVE', 18.99),
+('book', 'fantasy', 'A Game of Thrones', 'The first book in the epic fantasy series A Song of Ice and Fire.', '/books/a-game-of-thrones', '/images/a-game-of-thrones.jpg', 4.4, 392, '{"author": "George R.R. Martin", "isbn": "9780553103540", "pages": 694, "publisher": "Bantam", "year": 1996}', 25, 'ACTIVE', 19.99),
+('book', 'biography', 'Becoming', 'The memoir of former First Lady Michelle Obama.', '/books/becoming', '/images/becoming.jpg', 4.9, 401, '{"author": "Michelle Obama", "isbn": "9781524763138", "pages": 448, "publisher": "Crown", "year": 2018}', 17, 'ACTIVE', 22.99),
+('book', 'biography', 'Steve Jobs', 'The authorized biography of Apple co-founder Steve Jobs.', '/books/steve-jobs', '/images/steve-jobs.jpg', 4.2, 278, '{"author": "Walter Isaacson", "isbn": "9781451648539", "pages": 656, "publisher": "Simon & Schuster", "year": 2011}', 13, 'ACTIVE', 21.99),
+('book', 'romance', 'The Hating Game', 'Two office workers who hate each other are up for the same promotion.', '/books/the-hating-game', '/images/the-hating-game.jpg', 3.8, 198, '{"author": "Sally Thorne", "isbn": "9780062439598", "pages": 384, "publisher": "William Morrow", "year": 2016}', 21, 'ACTIVE', 15.99),
+('book', 'romance', 'Beach Read', 'Two writers with nothing in common end up living in neighboring beach houses.', '/books/beach-read', '/images/beach-read.jpg', 4.0, 234, '{"author": "Emily Henry", "isbn": "9781984806734", "pages": 384, "publisher": "Berkley", "year": 2020}', 16, 'ACTIVE', 16.99),
+('book', 'historical_fiction', 'The Book Thief', 'A young girl living in Nazi Germany learns to read and shares her stolen books with neighbors during bombing raids.', '/books/the-book-thief', '/images/the-book-thief.jpg', 4.5, 355, '{"author": "Markus Zusak", "isbn": "9780375831003", "pages": 552, "publisher": "Knopf", "year": 2005}', 14, 'ACTIVE', 14.99),
+('book', 'historical_fiction', 'All the Light We Cannot See', 'The story of a blind French girl and a German boy whose paths collide in occupied France.', '/books/all-the-light-we-cannot-see', '/images/all-the-light-we-cannot-see.jpg', 4.7, 399, '{"author": "Anthony Doerr", "isbn": "9781476746586", "pages": 544, "publisher": "Scribner", "year": 2014}', 18, 'ACTIVE', 17.99),
+('book', 'thriller', 'The Da Vinci Code', 'A murder in the Louvre museum leads to a trail of clues found in the work of Leonardo da Vinci.', '/books/the-da-vinci-code', '/images/the-da-vinci-code.jpg', 4.1, 221, '{"author": "Dan Brown", "isbn": "9780307474278", "pages": 489, "publisher": "Anchor", "year": 2003}', 20, 'ACTIVE', 16.99),
+('book', 'thriller', 'The Girl on the Train', 'A woman becomes entangled in a missing persons investigation.', '/books/the-girl-on-the-train', '/images/the-girl-on-the-train.jpg', 3.7, 176, '{"author": "Paula Hawkins", "isbn": "9781594633669", "pages": 336, "publisher": "Riverhead Books", "year": 2015}', 15, 'ACTIVE', 15.99),
+('book', 'young_adult', 'The Fault in Our Stars', 'Two teenagers meet at a cancer support group and fall in love.', '/books/the-fault-in-our-stars', '/images/the-fault-in-our-stars.jpg', 4.6, 367, '{"author": "John Green", "isbn": "9780525478812", "pages": 313, "publisher": "Dutton Books", "year": 2012}', 23, 'ACTIVE', 14.99),
+('book', 'young_adult', 'The Hunger Games', 'In a dystopian future, teenagers are forced to fight to the death in a televised event.', '/books/the-hunger-games', '/images/the-hunger-games.jpg', 4.3, 312, '{"author": "Suzanne Collins", "isbn": "9780439023481", "pages": 374, "publisher": "Scholastic", "year": 2008}', 19, 'ACTIVE', 13.99);
