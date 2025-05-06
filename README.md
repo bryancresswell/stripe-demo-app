@@ -83,7 +83,7 @@ My solution has these key features:
 	* I listened to webhooks here to make sure I'm parsing those incoming webhooks.
 #### Architecture
 The solution architecture is based off the client-server framework, where I simply provide a server that acts as the middleman between Stripe and my front-end. The customer (end-user) interacts with the merchant's (my front-end) and kickstarts the payment process, which is where my front-end then sends a `POST` request to my server, who then sends a request to Stripe's API to create the `PaymentIntent`. This is illustrated in the sequence diagram below.
-  ![](https://www.websequencediagrams.com/?png=msc2204397701&filename=Exported.png)
+![Screenshot](./assets/stripesa.png)
  
  ### How I approached the problem
 Being  generally familiar with the Stripe APIs - my main goal here was to understand the key ask. The key ask here was to simply add on payment functionality to an e-commerce book store, while ensuring that there's an easy way to add on new features in future.
