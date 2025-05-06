@@ -32,11 +32,7 @@ Assignment issued: 30 April 2025
 9. Connect to the relevant DB you just created with `psql -d stripe-demo-app -U <yourUserName>`
 10. Create the tables in the DB with `psql -d stripe-demo-app -f ./backend/utils/db/schema.sql  `
 11. Populate the products in the DB with `psql -d stripedemo -f ./backend/utils/db/generate_products.sql`
-12. Create a file with `touch ./.env`, open the file with your text editor of choice, and add these lines:
-    * `STRIPE_SECRET_KEY=<yourSecretKey`
-    * `POSTGRESQL_DB_NAME='stripe-demo-app'`
-    * `POSTGRESQL_USERNAME='<yourUserName>'`
-    * `POSTGRESQL_PASSWORD=''<yourPassword>"`
+12. Rename the `.env.sample` file to `.env` and fill in the variables with your respective values
 14. Launch a terminal and run `python app.py` - this will launch the backend server, that is running on `http://localhost:3000`. Ensure that the port is open.
 15. Your backend server is now running and listening to incoming API requests
 #### Setting up the frontend
