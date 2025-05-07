@@ -9,6 +9,7 @@ dotenv = "*"
 psycopg2 = "*"
 stripe = "*"
 flask-cors = "*"
+gunicorn = "*"
 
 [dev-packages]
 
