@@ -30,7 +30,7 @@ export const OrderConfirmation = () => {
     // Fetch the latest order number from backend and increment
     const res = await axios.get(`${import.meta.env.VITE_API_BASE_URL}/api/stripe/orders`);
     // orders is always an array with the most recent order (or empty)
-    if (res.data.length > 0 && res.data[0].length > 0) {
+    if (res === null || res.data.length === 0) {
       return 'BA-000001'
     }
     const latestOrder = res.data[0][0];
