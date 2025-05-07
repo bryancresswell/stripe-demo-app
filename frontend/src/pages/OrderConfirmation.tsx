@@ -12,6 +12,8 @@ export const OrderConfirmation = () => {
 
   const [orderNumber, setOrderNumber] = useState('');
 
+  const [paymentAmount, setPaymentAmount] = useState(0);
+
   const [paymentIntentId, setPaymentIntentId] = useState('');
 
   const [clientSecret, setClientSecret] = useState('');
@@ -52,6 +54,7 @@ export const OrderConfirmation = () => {
             const currentOrderNumber = (await getNextOrderNumber());
             setOrderNumber(currentOrderNumber);
             setPaymentIntentId(paymentIntent.id);
+            setPaymentAmount(paymentIntent.amount / 100);
             await axios.post(`${import.meta.env.VITE_API_BASE_URL}/api/stripe/orders`, {
                 id: currentOrderNumber,
                 payment_intent_id: paymentIntent.id,
@@ -93,9 +96,15 @@ export const OrderConfirmation = () => {
               Thank you for your purchase. We've received your order.
             </p>
             <div className="flex justify-between items-center bg-gray-100 rounded-md p-4 mb-8">
-                <div className="flex-1 flex flex-col items-center">
-                    <p className="font-medium mb-1 text-sm text-center">Order Number</p>
-                    <p className="font-bold text-base text-center">{orderNumber}</p>
+              <div className="flex-1 flex flex-col">
+                  <div className="flex-1 flex flex-col items-center">
+                      <p className="font-medium mb-1 text-sm text-center">Order Number</p>
+                      <p className="font-bold text-base text-center">{orderNumber}</p>
+                  </div>
+                  <div className="flex-1 flex flex-col items-center mt-3">
+                      <p className="font-medium mb-1 text-sm text-center">Amount Paid</p>
+                      <p className="font-bold text-base text-center">${paymentAmount}</p>
+                  </div>
                 </div>
                 <div className="flex-1 flex flex-col items-center border-l border-gray-300 pl-6 ml-6">
                     <p className="font-medium mb-1 text-sm text-center">Stripe Payment Reference</p>
