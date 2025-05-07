@@ -1,6 +1,11 @@
 # Stripe SA take-home assignment
 Assignment issued: 30 April 2025
 
+## Live version of the application
+You can access the live version of the application here: https://stripe-demo-app.vercel.app/ - just be aware that your extensions (e.g MalwareBytes) might block the domain - so make sure you unblock that first.
+
+The endpoint is pointing to my own EC2 instance, https://onethreadmind.com, and that's where the Stripe webhooks are going.
+
 ## Key requirements
 
 * Output a simple program that allows the user to:
@@ -23,23 +28,27 @@ Assignment issued: 30 April 2025
 #### Setting up the backend
 1. Clone the repository with `git clone git@github.com:bryancresswell/stripe-demo-app.git` to your desired folder
 2. Install all relevant python packages with `pip install -r requirements.txt`
-3. Install postgres via `brew install postgres` , or visit this page
+3. Install postgres via `brew install postgresql@14`, or visit this page
 4. Ensure that your postgres server is running with `brew services start postgresql`
 5. Verify that `psql` works by running `psql --version`
-6. Run the `psql` shell and type `createuser <yourUserName> --interactive --pwprompt`
-7. When prompted to be a superuser, respond with Yes
-8. Create the DB with `createdb stripe-demo-app -O <yourUserName>`
-9. Connect to the relevant DB you just created with `psql -d stripe-demo-app -U <yourUserName>`
-10. Create the tables in the DB with `psql -d stripe-demo-app -f ./backend/utils/db/schema.sql  `
-11. Populate the products in the DB with `psql -d stripedemo -f ./backend/utils/db/generate_products.sql`
-12. Rename the `.env.sample` file to `.env` and fill in the variables with your respective values
+6. Next, run `createuser <yourUserName> --interactive --pwprompt`
+7. Set a password, and when prompted to be a superuser, press Y
+8. Create the DB with `createdb <yourDatabaseName> -O <yourUserName>`
+9. Connect to the relevant DB you just created with `psql -d <yourDatabaseName> -U <yourUserName>`
+10. Type in your password
+11. Create the tables in the DB with `psql -d <yourDatabaseName> -f ./backend/utils/db/schema.sql`
+12. Populate the products in the DB with `psql -d <yourDatabaseName> -f ./backend/utils/db/generate_products.sql`
+13. Rename the `.env.sample` file to `.env` and fill in the variables with your respective values
 14. Launch a terminal and run `python app.py` - this will launch the backend server, that is running on `http://localhost:3000`. Ensure that the port is open.
 15. Your backend server is now running and listening to incoming API requests
+16. Test that your backend server is running by running `curl http://localhost:3000` and you should see a "Hello, World!"
+
 #### Setting up the frontend
-1. Navigate to `./frontend`
+1. Navigate to the frontend folder with `cd ../frontend` (assuming you're in the backend folder)
 2. Run `npm install`
-3. Launch the development server with `npm run dev`
-4. Your website should now be running on `http://localhost:5713` or whichever port Vite has assigned to it
+3. Rename the `.env.sample` file to `.env` and fill in the URL of the server as the value to `VITE_API_BASE_URL` which should be `http://localhost:5000`
+4. Launch the development server with `npm run dev`
+5. Your website should now be running on `http://localhost:5713` or whichever port Vite has assigned to it
 
 #### Checking that it all works
 1. Navigate to `http://localhost:5713` or the URL that Vite automatically opens
