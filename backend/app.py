@@ -21,7 +21,7 @@ cors = CORS(app)
 def index():
     return "Hello, World!"
 
-@app.route('/api/products', methods=['GET'])
+@app.route('/api/stripe/products', methods=['GET'])
 def products():
     cur = db.cursor()
     try:
@@ -38,7 +38,7 @@ def products():
     finally:
         cur.close()
 
-@app.route('/api/payments', methods=['GET', 'POST', 'PATCH'])
+@app.route('/api/stripe/payments', methods=['GET', 'POST', 'PATCH'])
 def payments():
     if request.method == 'POST':
         data = request.get_json()
@@ -127,7 +127,7 @@ def payments():
     return
 
 
-@app.route('/api/orders', methods=['GET', 'POST'])
+@app.route('/api/stripe/orders', methods=['GET', 'POST'])
 def orders():
     if request.method == 'GET':
         cur = db.cursor()
@@ -178,7 +178,7 @@ def orders():
     else:
         return
     
-@app.route('/webhooks/stripe', methods=['GET', 'POST'])
+@app.route('/api/stripe/webhooks', methods=['GET', 'POST'])
 def webhooks():
     ## Maybe for future, we add queuing and message recovery but for now just ingestion of webhooks
     if request.method == 'GET':
