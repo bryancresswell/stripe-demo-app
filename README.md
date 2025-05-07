@@ -28,7 +28,7 @@ The endpoint is pointing to my own EC2 instance, https://onethreadmind.com, and 
 #### Setting up the backend
 1. Clone the repository with `git clone git@github.com:bryancresswell/stripe-demo-app.git` to your desired folder
 2. Install all relevant python packages with `pip install -r requirements.txt`
-3. Install postgres via `brew install postgresql@14`, or visit this page
+3. Install postgres via `brew install postgresql@14` (recommended)
 4. Ensure that your postgres server is running with `brew services start postgresql`
 5. Verify that `psql` works by running `psql --version`
 6. Next, run `createuser <yourUserName> --interactive --pwprompt`
@@ -38,10 +38,14 @@ The endpoint is pointing to my own EC2 instance, https://onethreadmind.com, and 
 10. Type in your password
 11. Create the tables in the DB with `psql -d <yourDatabaseName> -f ./backend/utils/db/schema.sql`
 12. Populate the products in the DB with `psql -d <yourDatabaseName> -f ./backend/utils/db/generate_products.sql`
-13. Rename the `.env.sample` file to `.env` and fill in the variables with your respective values
-14. Launch a terminal and run `python app.py` - this will launch the backend server, that is running on `http://localhost:3000`. Ensure that the port is open.
-15. Your backend server is now running and listening to incoming API requests
-16. Test that your backend server is running by running `curl http://localhost:3000` and you should see a "Hello, World!"
+13. Do a quick check that the tables and data exists by connecting to your database with `psql -d <yourDatabaseName> -U <yourUserName>`
+14. Run the query `\d` to see all the available tables
+15. Run the query `SELECT * FROM products;` to see the available products created in the `products` table
+16. Exit the shell with `\q`
+17. Rename the `.env.sample` file to `.env` and fill in the variables with your respective values
+18. Launch a terminal and run `python app.py` - this will launch the backend server, that is running on `http://localhost:3000`. Ensure that the port is open.
+19. Your backend server is now running and listening to incoming API requests
+20. Test that your backend server is running by running `curl http://localhost:3000` and you should see a "Hello, World!"
 
 #### Setting up the frontend
 1. Navigate to the frontend folder with `cd ../frontend` (assuming you're in the backend folder)
