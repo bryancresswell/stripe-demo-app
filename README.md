@@ -91,7 +91,7 @@ The solution architecture is based off the client-server framework, where I simp
 ![Screenshot](./assets/stripesa.png)
  
  ### How I approached the problem
-Being  generally familiar with the Stripe APIs - my main goal here was to understand the key ask. The key ask here was to simply add on payment functionality to an e-commerce book store, while ensuring that there's an easy way to add on new features in future.
+Being generally familiar with the Stripe APIs - my main goal here was to understand the key ask. The key ask here was to simply add on payment functionality to an e-commerce book store, while ensuring that there's an easy way to add on new features in future.
 
 Looking at the boilerplate code provided by Marko[1], I noticed that it was last maintained almost 3 years ago - a good amount of time that the project would have gone unmaintained for. The boilerplate was also a simple Jinjja2 view with a very standard backend & front-end.
 
@@ -115,7 +115,7 @@ I referenced a few documentation pages - and also used some code samples - which
 * https://docs.stripe.com/payments/payment-element/design-an-integration
 
 #### Challenges
-I don't think there were any significant blockers during implementation, since the process was quite straightforward when running through it. I did however, run into a situation where simulating PayNow wasn't really working as expected - but it seems this is a bug on the simulator side. It seems like the new tab opened for PayNow redirects to a `returnUrl` unintentionally - which is different from WeChat.
+I don't think there were any significant blockers during implementation, since the process was quite straightforward when running through it. I did however, run into a situation where simulating PayNow wasn't really working as expected - but it seems this is a bug on the simulator side error. It seems like the new tab opened for PayNow redirects to a `returnUrl` unintentionally - which is different from WeChat - but maybe I'm missing context here.
 
 I took the opportunity to also try and identify best practices - such as the above on how Stripe's Payment Element determines country of the user without any user input - and also read up on the other APIs.
 
@@ -124,9 +124,9 @@ If afforded the time in future, I think where this app could grow to be more use
 1. Being able to show customers the different payment acceptance options (i.e single element, Checkout, Payment Element)
 2. Opening up more Elements for merchants to understand the full array of choices that they have
 3. Exposing an API editor for merchants to see how the APIs interact with the Stripe API in real-time so that they have a better understanding of the offering and flows
-4.  Leveraging this single integration and moving to integrate with other aspects of Stripe - such as Connect/Treasury/Issuing
+4. Leveraging this single integration and moving to integrate with other aspects of Stripe - such as Connect/Treasury/Issuing
 5. Integrate with Stripe Tax to facilitate the calculation of the tax for the items purchased here
-6. Since I also process webhooks, the goal would be to also implement the best practices here, such as setting up:
+6. Since I also process webhooks in this demo, the goal would be to also implement the best practices here, such as setting up:
 	* Message queuing for webhooks via Kafka
 	* Payload verification/encryption
 
