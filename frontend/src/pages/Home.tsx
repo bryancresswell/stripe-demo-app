@@ -12,7 +12,7 @@ export const Home = () => {
 
   useEffect(() => {
     
-    axios.get('http://localhost:3000/api/products')
+    axios.get(`${import.meta.env.VITE_API_BASE_URL}/api/stripe/products`)
       .then(response => {
         console.log(response.data);
         setCatalog(response.data);

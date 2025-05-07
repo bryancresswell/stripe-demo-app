@@ -28,7 +28,7 @@ export const OrderConfirmation = () => {
 
   const getNextOrderNumber = async () => {
     // Fetch the latest order number from backend and increment
-    const res = await axios.get('http://localhost:3000/api/orders');
+    const res = await axios.get(`${import.meta.env.VITE_API_BASE_URL}/api/stripe/orders`);
     // orders is always an array with the most recent order (or empty)
     const latestOrder = res.data[0][0];
     let num = parseInt(latestOrder.replace('BA-', '').padStart(6, '0'), 10);
@@ -49,7 +49,7 @@ export const OrderConfirmation = () => {
             const currentOrderNumber = (await getNextOrderNumber());
             setOrderNumber(currentOrderNumber);
             setPaymentIntentId(paymentIntent.id);
-            await axios.post('http://localhost:3000/api/orders', {
+            await axios.post(`${import.meta.env.VITE_API_BASE_URL}/api/stripe/orders`, {
                 id: currentOrderNumber,
                 payment_intent_id: paymentIntent.id,
                 status: 'confirmed',

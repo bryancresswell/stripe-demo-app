@@ -62,7 +62,7 @@ const validateShippingInfo = () => {
     e.preventDefault()
     if (validateShippingInfo() && currentStep === 'shipping') {
         // here is where i call backend
-        axios.post('http://localhost:3000/api/payments', {
+        axios.post(`${import.meta.env.VITE_API_BASE_URL}/api/stripe/payments`, {
             "amount": getTotalPrice(),
             "currency": selectedCurrency,
             shippingInfo,
