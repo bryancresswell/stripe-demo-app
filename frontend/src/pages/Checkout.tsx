@@ -13,7 +13,7 @@ const stripePromise = loadStripe("pk_test_51RKj6v2e7Lu3w2SgOqSuWvhfmVJt8rDPSoBGq
 
 export const Checkout = () => {
 
-  const { items, getTotalPrice, clearCart } = useCart()
+  const { items, getFinalCheckoutAmount, getTotalPrice, getTotalShipping, getTotalTax, clearCart } = useCart()
   const navigate = useNavigate()
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [clientSecret, setClientSecret] = useState("")
@@ -63,7 +63,7 @@ const validateShippingInfo = () => {
     if (validateShippingInfo() && currentStep === 'shipping') {
         // here is where i call backend
         axios.post(`${import.meta.env.VITE_API_BASE_URL}/api/stripe/payments`, {
-            "amount": getTotalPrice(),
+            "amount": getFinalCheckoutAmount(),
             "currency": selectedCurrency,
             shippingInfo,
             items,
@@ -149,11 +149,11 @@ const validateShippingInfo = () => {
                 </div>
                 <div className="flex justify-between">
                   <span>Shipping</span>
-                  <span>$4.99</span>
+                  <span>${getTotalShipping().toFixed(2)}</span>
                 </div>
                 <div className="flex justify-between">
                   <span>Tax</span>
-                  <span>${(getTotalPrice() * 0.08).toFixed(2)}</span>
+                  <span>${getTotalTax().toFixed(2)}</span>
                 </div>
               </div>
               <div className="border-t border-gray-300 pt-3 mb-4">
@@ -161,9 +161,7 @@ const validateShippingInfo = () => {
                   <span>Total</span>
                   <span>
                     $
-                    {(getTotalPrice() + 4.99 + getTotalPrice() * 0.08).toFixed(
-                      2,
-                    )}
+                    {getFinalCheckoutAmount().toFixed(2)}
                   </span>
                 </div>
               </div>

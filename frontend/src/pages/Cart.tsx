@@ -2,9 +2,21 @@ import { Link, useNavigate } from 'react-router-dom'
 import { ShoppingCartIcon, ArrowRightIcon } from 'lucide-react'
 import { CartItem } from '../components/CartItem'
 import { useCart } from '../context/CartContext'
+import { useEffect } from 'react'
+
+
+
 export const Cart = () => {
-  const { items, getTotalPrice, clearCart } = useCart()
+  const { items, getTotalPrice, clearCart, getTotalTax, getTotalShipping, getFinalCheckoutAmount } = useCart()
   const navigate = useNavigate()
+
+  useEffect(() => {
+    console.log(getTotalPrice());
+    console.log(getTotalTax());
+    console.log(getTotalShipping());
+    console.log(getFinalCheckoutAmount());
+  })
+  
   if (items.length === 0) {
     return (
       <div className="max-w-2xl mx-auto text-center py-12">
@@ -61,11 +73,11 @@ export const Cart = () => {
               </div>
               <div className="flex justify-between">
                 <span>Shipping</span>
-                <span>$4.99</span>
+                <span>${getTotalShipping().toFixed(2)}</span>
               </div>
               <div className="flex justify-between">
                 <span>Tax</span>
-                <span>${(getTotalPrice() * 0.08).toFixed(2)}</span>
+                <span>${getTotalTax().toFixed(2)}</span>
               </div>
             </div>
             <div className="border-t border-gray-300 pt-3 mb-4">
@@ -73,7 +85,7 @@ export const Cart = () => {
                 <span>Total</span>
                 <span>
                   $
-                  {(getTotalPrice() + 4.99 + getTotalPrice() * 0.08).toFixed(2)}
+                  {getFinalCheckoutAmount().toFixed(2)}
                 </span>
               </div>
             </div>
