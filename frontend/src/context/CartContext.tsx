@@ -29,7 +29,14 @@ type CartContextType = {
     clearCart: () => void
     getTotalItems: () => number
     getTotalPrice: () => number
+    getTotalTax: () => number
+    getTotalShipping: () => number
+    getFinalCheckoutAmount: () => number
   }
+
+const TAX_RATE: number = 0.09
+const SHIPPING_FEE: number = 4.99
+
 
 const CartContext = createContext<CartContextType | undefined>(undefined)
 export const CartProvider: React.FC<{
@@ -89,6 +96,24 @@ const getTotalPrice = () => {
     0,
     )
 }
+
+const getTotalTax = () => {
+    return items.reduce(
+    (total, item) => total + Number(item.product.price) * item.quantity * TAX_RATE,
+    0,
+    )
+}
+
+// Hardcode shipping fee
+const getTotalShipping = () => {
+    return SHIPPING_FEE;
+}
+
+// Final checkout amount helper
+const getFinalCheckoutAmount = () => {
+    return Number((getTotalPrice() + getTotalTax() + getTotalShipping()).toPrecision(4));
+}
+
 return (
     <CartContext.Provider
     value={{
@@ -99,6 +124,9 @@ return (
         clearCart,
         getTotalItems,
         getTotalPrice,
+        getTotalTax,
+        getTotalShipping,
+        getFinalCheckoutAmount,
     }}
     >
     {children}
